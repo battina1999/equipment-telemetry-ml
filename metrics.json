@@ -1,0 +1,192 @@
+{
+  "project": "Equipment Telemetry ML Lab",
+  "data": "100% deterministic synthetic refrigeration telemetry; no real store or employer data.",
+  "runtime": {
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "scipy": "1.14.1",
+    "scikit_learn": "1.7.2"
+  },
+  "seed": 734,
+  "raw_rows": 23040,
+  "raw_sha256": "fd2b5af2e6f2da538d7a016bffe4b0f612cc7399231636e795cb32cbdac509e9",
+  "assets": 48,
+  "sample_interval_hours": 6,
+  "days": 120,
+  "target": "Fault event in the NEXT 24 hours; current faults and recovery excluded.",
+  "selection": "Candidate with greatest calibration average precision. Candidate thresholds maximize calibration F2; ties choose higher threshold. Hyperparameters fixed before evaluation.",
+  "winner": "logistic_regression",
+  "threshold": 0.8100000000000002,
+  "features": [
+    "cabinet_temp_c",
+    "ambient_temp_c",
+    "vibration_rms",
+    "power_kw",
+    "duty_fraction",
+    "door_open_minutes",
+    "temp_mean_48h",
+    "temp_std_48h",
+    "temp_change_24h",
+    "vibration_mean_48h",
+    "vibration_change_24h",
+    "power_mean_48h",
+    "duty_mean_48h"
+  ],
+  "splits": {
+    "train": {
+      "rows": 8616,
+      "assets": 36,
+      "min_day": 1.75,
+      "max_day": 64.75,
+      "positive_rows": 500
+    },
+    "calibration": {
+      "rows": 1914,
+      "assets": 36,
+      "min_day": 72.0,
+      "max_day": 85.75,
+      "positive_rows": 107
+    },
+    "test_known": {
+      "rows": 3536,
+      "assets": 36,
+      "min_day": 93.0,
+      "max_day": 118.75,
+      "positive_rows": 209
+    },
+    "test_unseen": {
+      "rows": 1163,
+      "assets": 12,
+      "min_day": 93.0,
+      "max_day": 118.75,
+      "positive_rows": 81
+    }
+  },
+  "calibration": {
+    "logistic_regression": {
+      "rows": 1914,
+      "positive_rows": 107,
+      "prevalence": 0.05590386624869383,
+      "average_precision": 0.7877528523957912,
+      "roc_auc": 0.9844271240089165,
+      "brier_score": 0.05450075231005734,
+      "precision": 0.5632183908045977,
+      "recall": 0.9158878504672897,
+      "f1": 0.697508896797153,
+      "alerts_per_100_readings": 9.090909090909092,
+      "confusion": {
+        "tn": 1731,
+        "fp": 76,
+        "fn": 9,
+        "tp": 98
+      },
+      "threshold": 0.8100000000000002,
+      "f2": 0.813953488372093
+    },
+    "random_forest": {
+      "rows": 1914,
+      "positive_rows": 107,
+      "prevalence": 0.05590386624869383,
+      "average_precision": 0.728377798563554,
+      "roc_auc": 0.9810653274648432,
+      "brier_score": 0.04758337231467798,
+      "precision": 0.517948717948718,
+      "recall": 0.9439252336448598,
+      "f1": 0.6688741721854304,
+      "alerts_per_100_readings": 10.18808777429467,
+      "confusion": {
+        "tn": 1713,
+        "fp": 94,
+        "fn": 6,
+        "tp": 101
+      },
+      "threshold": 0.6600000000000001,
+      "f2": 0.8105939004815409
+    }
+  },
+  "tests": {
+    "logistic_regression": {
+      "test_known": {
+        "rows": 3536,
+        "positive_rows": 209,
+        "prevalence": 0.05910633484162896,
+        "average_precision": 0.8107033774819545,
+        "roc_auc": 0.9875011325345908,
+        "brier_score": 0.03535458737568422,
+        "precision": 0.6823529411764706,
+        "recall": 0.8325358851674641,
+        "f1": 0.75,
+        "alerts_per_100_readings": 7.211538461538461,
+        "confusion": {
+          "tn": 3246,
+          "fp": 81,
+          "fn": 35,
+          "tp": 174
+        }
+      },
+      "test_unseen": {
+        "rows": 1163,
+        "positive_rows": 81,
+        "prevalence": 0.06964746345657781,
+        "average_precision": 0.8230078845531656,
+        "roc_auc": 0.9854065402432624,
+        "brier_score": 0.05211427453589805,
+        "precision": 0.6101694915254238,
+        "recall": 0.8888888888888888,
+        "f1": 0.7236180904522613,
+        "alerts_per_100_readings": 10.146173688736027,
+        "confusion": {
+          "tn": 1036,
+          "fp": 46,
+          "fn": 9,
+          "tp": 72
+        }
+      }
+    },
+    "random_forest": {
+      "test_known": {
+        "rows": 3536,
+        "positive_rows": 209,
+        "prevalence": 0.05910633484162896,
+        "average_precision": 0.7464937172831242,
+        "roc_auc": 0.984481040292345,
+        "brier_score": 0.03325654878269956,
+        "precision": 0.6169491525423729,
+        "recall": 0.8708133971291866,
+        "f1": 0.7222222222222222,
+        "alerts_per_100_readings": 8.342760180995475,
+        "confusion": {
+          "tn": 3214,
+          "fp": 113,
+          "fn": 27,
+          "tp": 182
+        }
+      },
+      "test_unseen": {
+        "rows": 1163,
+        "positive_rows": 81,
+        "prevalence": 0.06964746345657781,
+        "average_precision": 0.7832637627990483,
+        "roc_auc": 0.9830674790625499,
+        "brier_score": 0.046538987143914516,
+        "precision": 0.5769230769230769,
+        "recall": 0.9259259259259259,
+        "f1": 0.7109004739336493,
+        "alerts_per_100_readings": 11.17798796216681,
+        "confusion": {
+          "tn": 1027,
+          "fp": 55,
+          "fn": 6,
+          "tp": 75
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Synthetic generator defines all patterns; results do not estimate real equipment performance.",
+    "Reading-level labels overlap within fault horizons; metrics are not independent event-level alarms or confidence intervals.",
+    "Unseen assets follow the same generator family; no external distribution-shift validation.",
+    "No probability calibration, operational deployment, Azure execution, or real maintenance savings are established."
+  ]
+}

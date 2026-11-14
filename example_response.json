@@ -1,0 +1,9 @@
+{
+  "fault_risk_score": 0.9824298335555723,
+  "threshold": 0.8100000000000002,
+  "review_flag": true,
+  "horizon_hours": 24,
+  "model": "logistic_regression",
+  "synthetic_only": true,
+  "interpretation": "Model score, not a calibrated probability or maintenance instruction."
+}

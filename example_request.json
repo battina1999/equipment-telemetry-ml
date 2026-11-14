@@ -1,0 +1,17 @@
+{
+  "features": {
+    "cabinet_temp_c": 4.944041606598527,
+    "ambient_temp_c": 24.320362498630868,
+    "vibration_rms": 0.9418307692040141,
+    "power_kw": 1.1970234388185839,
+    "duty_fraction": 0.593644410985025,
+    "door_open_minutes": 7.917875981524946,
+    "temp_mean_48h": 5.032893242205582,
+    "temp_std_48h": 0.3510847040489882,
+    "temp_change_24h": 0.1413566962717283,
+    "vibration_mean_48h": 0.8217834552225586,
+    "vibration_change_24h": 0.11930568904967087,
+    "power_mean_48h": 1.1457360506555783,
+    "duty_mean_48h": 0.643155891036409
+  }
+}
